@@ -17,10 +17,9 @@
 }
 
 .bar{
-    height: 200px;
-    width: 30px;
-    border: 1px solid black;
-    margin: 0px 2px;
+    width: 10px;
+    background-color: aqua;
+    border-radius: 2px;
 }
 
 .bars_container{
