@@ -17,9 +17,10 @@
 }
 
 .bar{
-    width: 10px;
+    width: 50px;
     background-color: aqua;
     border-radius: 2px;
+    border: solid black 1px;
 }
 
 .bars_container{
