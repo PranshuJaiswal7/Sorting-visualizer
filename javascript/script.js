@@ -2,8 +2,8 @@ let random=document.getElementById("random");
 let sort=document.getElementById("sort");
 let bars_container=document.getElementById("bars_container")
 let minrange=1;
-let maxrange=30;
-let n=10;
+let maxrange=50;
+let n=40;
 let unsorted_array=new Array(n);
 function random_number(min,max){
     return Math.floor(Math.random()*(max-min+1))+min;
@@ -58,14 +58,14 @@ function sleep(ms) {
           array[j + 1] = temp;
           bars[j].style.height = array[j] * 10 + "px";
           bars[j].style.backgroundColor = "lightgreen";
-          bars[j].innerText = array[j];
+          // bars[j].innerText = array[j];
           bars[j + 1].style.height = array[j + 1] * 10 + "px";
           bars[j + 1].style.backgroundColor = "lightgreen";
-          bars[j + 1].innerText = array[j + 1];
-          await sleep(100);
+          // bars[j + 1].innerText = array[j + 1];
+          await sleep(30);
         }
       }
-      await sleep(100);
+      await sleep(30);
     }
     return array;
   }
