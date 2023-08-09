@@ -27,7 +27,7 @@ body{
 
 
 .bar{
-    width: 10px;
+    width: 20px;
     background-color: aqua;
     border-radius: 2px;
     border: solid black 1px;
@@ -35,6 +35,11 @@ body{
 
 .slider_title{
     color: white;
+}
+
+.text_container{
+    color: white;
+    font-size: 50px;
 }
 
 .button_container > button, select{
