@@ -15,6 +15,36 @@
             
         </div>
         <div class="button_container">
+            <!-- sliders -->
+
+            <!-- array_size -->
+           <span class="slider_title">Array size:</span> 
+            <input
+            type="range"
+            id="slider"
+            min="50"
+            max="150"
+            step="5"
+            value="50"
+          />
+          
+          <!-- speed of algo -->
+          <select name="" id="speed">
+            <option value="100">Slow</option>
+            <option value="50">Medium</option>
+            <option value="10">Fast</option>
+          </select>
+          
+          <!-- various algo -->
+          <select name="" id="algo">
+            <option value="bubble">Bubble Sort</option>
+            <option value="insertion">Insertion Sort</option>
+            <option value="heap">Heap Sort</option>
+            <option value="merge">Merge Sort</option>
+            <option value="quick">Quick Sort</option>
+            <option value="selection">Selection Sort</option>
+          </select>
+
 
             <button id="random">Randomize Array</button>
             <button id="sort">Sort</button>

@@ -1,9 +1,12 @@
 let random=document.getElementById("random");
 let sort=document.getElementById("sort");
 let bars_container=document.getElementById("bars_container")
+let slider = document.getElementById("slider");
 let minrange=1;
-let maxrange=50;
-let n=40;
+let maxrange=slider.value;
+let n=slider.value;
+let heightFactor = 4;
+let speedFactor = 100;
 let unsorted_array=new Array(n);
 function random_number(min,max){
     return Math.floor(Math.random()*(max-min+1))+min;
@@ -18,6 +21,23 @@ function create_random_array(){
     return array
 }
 
+
+speed.addEventListener("change", (e) => {
+  speedFactor = parseInt(e.target.value);
+});
+
+
+
+slider.addEventListener("input", function () {
+  n= slider.value;
+  maxrange = slider.value;
+  //console.log(numOfBars);
+  bars_container.innerHTML = "";
+  unsorted_array = create_random_array();
+  changebar(unsorted_array);
+});
+
+
 document.addEventListener("DOMContentLoaded",function(){
      unsorted_array=create_random_array();
      changebar(unsorted_array);
@@ -28,7 +48,7 @@ function changebar(array){
     for(let i=0;i<array.length;i++){
     let bar=document.createElement("div");
     bar.classList.add("bar")
-    bar.style.height=array[i]*10+"px"
+    bar.style.height=array[i]*heightFactor+"px"
     bars_container.appendChild(bar);
 
     }
@@ -56,16 +76,16 @@ function sleep(ms) {
           let temp = array[j];
           array[j] = array[j + 1];
           array[j + 1] = temp;
-          bars[j].style.height = array[j] * 10 + "px";
+          bars[j].style.height = array[j] * heightFactor + "px";
           bars[j].style.backgroundColor = "lightgreen";
           // bars[j].innerText = array[j];
-          bars[j + 1].style.height = array[j + 1] * 10 + "px";
+          bars[j + 1].style.height = array[j + 1] * heightFactor + "px";
           bars[j + 1].style.backgroundColor = "lightgreen";
           // bars[j + 1].innerText = array[j + 1];
-          await sleep(30);
+          await sleep(speedFactor);
         }
       }
-      await sleep(30);
+      await sleep(speedFactor);
     }
     return array;
   }

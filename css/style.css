@@ -27,13 +27,15 @@ body{
 
 
 .bar{
-    width: 30px;
+    width: 10px;
     background-color: aqua;
     border-radius: 2px;
     border: solid black 1px;
 }
 
-
+.slider_title{
+    color: white;
+}
 
 .button_container > button, select{
     width: 200px;
