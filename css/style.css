@@ -45,6 +45,7 @@ body{
 .button_container > button, select{
     width: 200px;
     height: 30px;
+    
     background-color: #677685;
     border: none;
     border-radius: 5px;
@@ -57,4 +58,8 @@ body{
 
 button:hover{
     background-color: #56697b;
+}
+
+#array_user{
+    padding-bottom: 5px;
 }

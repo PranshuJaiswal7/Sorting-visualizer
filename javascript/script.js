@@ -3,6 +3,7 @@ let sort=document.getElementById("sort");
 let bars_container=document.getElementById("bars_container")
 let slider = document.getElementById("slider");
 let select_algo = document.getElementById("algo");
+let user=document.getElementById("user");
 let algotouse="bubble";
 let minrange=1;
 let maxrange=75;
@@ -10,6 +11,21 @@ let n=slider.value;
 let heightFactor = 4;
 let speedFactor = 1000;
 let unsorted_array=new Array(n);
+let flag=false;
+const array = [];
+user.addEventListener("click",function processInput() {
+  const elementInput = document.getElementById("elementInput");
+  const inputText = elementInput.value;
+  
+  const elements = inputText.split(",").map(element => parseInt(element.trim()));
+  array.push(...elements.filter(element => !isNaN(element)));
+  bars_container.innerHTML="";
+  changebar(array);
+  elementInput.value = "";
+  flag=true;
+  return array;
+})
+
 
 function random_number(min,max){
     return Math.floor(Math.random()*(max-min+1))+min;
@@ -240,7 +256,12 @@ async function quickSort(items, left, right) {
  sort.addEventListener("click", function () {
   switch (algotouse) {
     case "bubble":
+      if(flag){
+        bubbleSort(array);
+      }
+      else{
       bubbleSort(unsorted_array);
+      }
       break;
     // case "merge":
     //   if (
@@ -258,10 +279,20 @@ async function quickSort(items, left, right) {
     //   HeapSort(unsorted_array);
     //   break;
     case "insertion":
+      if(flag){
+        InsertionSort(array);
+      }
+      else{
       InsertionSort(unsorted_array);
+      }
       break;
     case "quick":
-      quickSort(unsorted_array, 0, unsorted_array.length - 1);
+      if(flag){
+        quickSort(array,0,array.length-1);
+      }
+      else{
+      quickSort(unsorted_array,0,unsorted_array.length-1);
+      }
       break;
     default:
       bubbleSort(unsorted_array);
