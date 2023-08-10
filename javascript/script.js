@@ -32,6 +32,7 @@ function random_number(min,max){
 }
 
 function create_random_array(){
+     flag=false;
     let array = new Array(n);
     for (let index = 0; index < n; index++) {
         array[index]=random_number(minrange,maxrange);
@@ -242,6 +243,78 @@ async function quickSort(items, left, right) {
   return items;
 }
 
+//heap sort
+async function heapify(arr, n, i) {
+  let text=document.getElementById("text_container");
+  let bars = document.getElementsByClassName("bar");
+  let largest = i; // Initialize largest as root
+  const left = 2 * i + 1; // Left child
+  const right = 2 * i + 2; // Right child
+  bars[i].style.backgroundColor="lightgreen";
+  await sleep(speedFactor);
+  // If left child is larger than root
+  if (left < n && arr[left] > arr[largest]) {
+    largest = left;
+  }
+
+  // If right child is larger than current largest
+  if (right < n && arr[right] > arr[largest]) {
+    largest = right;
+  }
+
+  // If largest is not root
+  if (largest !== i) {
+    bars[largest].style.backgroundColor="yellow";
+    await sleep(speedFactor);
+    // Swap arr[i] and arr[largest]
+    [arr[i], arr[largest]] = [arr[largest], arr[i]];
+    bars[i].style.height = arr[i] * heightFactor + "px";
+    bars[largest].style.height = arr[largest] * heightFactor + "px";
+    await sleep(speedFactor);
+    bars[largest].style.backgroundColor="aqua";
+
+    await sleep(speedFactor);
+    bars[i].style.backgroundColor="aqua";
+    // Recursively heapify the affected sub-tree
+    await heapify(arr, n, largest);
+  } 
+     bars[i].style.backgroundColor="aqua";
+}
+
+// Main function to perform Heap Sort
+async function heapSort(arr) {
+  let bars = document.getElementsByClassName("bar");
+  let text=document.getElementById("text_container");
+  const n = arr.length;
+  // Build a max heap
+  text.innerHTML="Building a heap";
+  for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+    await heapify(arr, n, i);
+  }
+  text.innerHTML="";
+  // Extract elements from the heap one by one
+  text.innerHTML="Extracting element one by one";;
+  for (let i = n - 1; i > 0; i--) {
+    // Move current root to end
+    [arr[0], arr[i]] = [arr[i], arr[0]];
+    bars[0].style.backgroundColor="lightgreen";
+    await sleep(speedFactor);
+    bars[i].style.backgroundColor="yellow";
+    await sleep(speedFactor);
+    bars[i].style.height = arr[i] * heightFactor + "px";
+    bars[0].style.height = arr[0] * heightFactor + "px";
+    await sleep(speedFactor);
+    bars[i].style.backgroundColor="aqua";
+    // Call max heapify on the reduced heap
+    text.innerHTML="Heapify";
+    await heapify(arr, i, 0);
+    text.innerHTML="Extracting elment one by one";
+  }
+  text.innerHTML="";
+
+  return arr;
+}
+
 
 
 
@@ -275,9 +348,14 @@ async function quickSort(items, left, right) {
     //   }
     //   //console.log(mergeSort(unsorted_array));
     //   break;
-    // case "heap":
-    //   HeapSort(unsorted_array);
-    //   break;
+    case "heap":
+      if(flag){
+        heapSort(array);
+      }
+      else{
+       heapSort(unsorted_array);
+      }
+      break;
     case "insertion":
       if(flag){
         InsertionSort(array);
